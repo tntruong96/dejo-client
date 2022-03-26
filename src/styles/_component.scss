@@ -1,0 +1,70 @@
+@import "./variable";
+
+.btn {
+  border: 1px solid rgb(190, 186, 186);
+  border-radius: 5px;
+  padding: 5px;
+  margin: 15px;
+  width: 100%;
+
+  &:hover {
+      background-color:$cream;
+  }
+
+  &:disabled {
+    background-color:$cream;
+  }
+  
+}
+
+.form {
+  border: 1px solid rgb(233, 230, 230);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.form-group {
+  // margin: 15px;
+  width: 100%;
+}
+
+input.form-input {
+  border: 1px solid rgb(165, 161, 161);
+  border-radius: 2px;
+  padding: 5px;
+  margin: 10px 0px;
+  outline: none;
+  width: 100%;
+
+  &:hover,
+  &:focus {
+    // border: 2px solid #333;
+  }
+
+  &.form-input-error {
+    border: 1px solid $red;
+
+    &::placeholder {
+      color: $red;
+    }
+
+    &:-ms-input-placeholder {
+      /* Internet Explorer 10-11 */
+      color: red;
+    }
+
+    &::-ms-input-placeholder {
+      /* Microsoft Edge */
+      color: red;
+    }
+  }
+}
+
+.error {
+  color: $red;
+}
+
+.logo {
+  font-family: "Dancing Script", cursive;
+  cursor: pointer;
+}
