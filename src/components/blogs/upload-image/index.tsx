@@ -6,6 +6,8 @@ import { UploadContainer } from "./style";
 import { UploadChangeParam, RcFile } from "antd/lib/upload";
 import { UploadFile } from "antd/lib/upload/interface";
 import classNames from "classnames";
+import Image from 'next/image'
+
 
 interface Props {
     label: string,
@@ -69,7 +71,7 @@ const UploadImage: React.FC<Props> = ({onChange, label, ...props}) => {
         onChange={handleChange}
       >
         {imageUrl ? (
-          <img src={imageUrl} alt="avatar" style={{ width: "100%" }} />
+          <Image src={imageUrl} alt="avatar" width="100%"/>
         ) : (
           uploadBtn
         )}

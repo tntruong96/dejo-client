@@ -4,8 +4,9 @@ import dynamic from "next/dynamic";
 import React, { useEffect, useRef } from "react";
 import { QuillContainer } from "./styles";
 const ReactQuill = dynamic<any>(async () => {
-    const {default: RQ} = await import('react-quill')
-    return ({ forwardedRef, ...props }) => <RQ ref={forwardedRef} {...props} />;
+    const {default: ReactQuill} = await import('react-quill')
+    //@ts-ignore
+    return ({ forwardedRef, ...props }) => <ReactQuill ref={forwardedRef} {...props} />;
 }, { ssr: false });
 
 // const QuillWithRef = React.forwardRef((props, ref) => {

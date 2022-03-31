@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { Blogs } from "../../services/blogs";
-import CardBlog from "@components/card-blog";
+import CardBlog from "@components/blogs/card-blog";
 import { IBlog } from "interfaces/blog.interface";
 import { useRouter } from "next/router";
 import axios from "axios";

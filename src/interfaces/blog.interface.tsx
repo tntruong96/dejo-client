@@ -21,7 +21,7 @@ export type IBlogFormValue = {
 }
 
 
-export type BlogCreateDTO = Omit<IBlog, "id" | "status" | "createdAt" | "updatedAt" | "slug" | "thumb">
+export type IBlogCreateDTO = Omit<IBlog, "id" | "status" | "createdAt" | "updatedAt" | "slug" | "thumb">
 
 export interface IBlogCategories  {
     id: number,

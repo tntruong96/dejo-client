@@ -1,11 +1,13 @@
 import { Context, createWrapper } from "next-redux-wrapper";
-import { applyMiddleware, createStore, Store } from "redux";
+import { applyMiddleware, createStore, Reducer, Store } from "redux";
 import { reducers } from "./store";
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import thunkMiddleware from 'redux-thunk';
 import logger from "redux-logger";
 import { composeWithDevTools } from "@reduxjs/toolkit/dist/devtoolsExtension";
+
+
 
 //BINDING MIDDLEWARE
 const bindMiddleware = (middleware: any) => {
@@ -18,7 +20,7 @@ const bindMiddleware = (middleware: any) => {
 
 
 
-const makeConfiguredStore = (reducer) =>
+const makeConfiguredStore = (reducer: Reducer) =>
   createStore(reducer, undefined, bindMiddleware([logger, thunkMiddleware]) );
 
 const persistConfig = {
@@ -40,6 +42,7 @@ const persistConfig = {
 const makeStore = () => {
     const persistedReducer = persistReducer(persistConfig, reducers);
     const store = makeConfiguredStore(persistedReducer);
+    //@ts-ignore
     store.__persistor = persistStore(store);
     return store;
 }

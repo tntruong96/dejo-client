@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { CardContainer } from './card-blog.styles';
+import { CardContainer } from './styles';
 import {convertDate} from '@utils/date'
 import Image from 'next/image';
 import { useRouter } from 'next/router';

@@ -3,11 +3,16 @@ import { useUserProfile } from "@utils/hooks/useUserProfile";
 import { Field, Form, Formik } from "formik";
 import { message } from "antd";
 import {
-  BlogCreateDTO,
+  IBlogCreateDTO,
   IBlogCategories,
   IBlogFormValue,
 } from "interfaces/blog.interface";
 import React, { useEffect, useState } from "react";
+import { GetStaticProps } from "next";
+import axios from "axios";
+import SelectFile from "@components/blogs/select-file";
+import { useRouter } from "next/router";
+import QuillEditor from "@components/text-editor";
 import * as yup from "yup";
 
 
@@ -56,7 +61,7 @@ const CreateBlog: React.FC<Props> = ({ categories }) => {
         );
         imageRespone = data;
       }
-      const createDTO: BlogCreateDTO = {
+      const createDTO: IBlogCreateDTO = {
         ...values,
         createdBy: userProfile.id,
         images: JSON.stringify([]),
@@ -151,13 +156,7 @@ const CreateBlog: React.FC<Props> = ({ categories }) => {
 //- The data comes from a headless CMS.
 //- The data can be publicly cached (not user-specific).
 //- The page must be pre-rendered (for SEO) and be very fast — getStaticProps generates HTML and JSON files, both of which can be cached by a CDN for performance.
-import { GetStaticProps } from "next";
-import axios from "axios";
-import SelectFile from "@components/select-file";
-import { useRouter } from "next/router";
-import QuillEditor from "@components/text-editor";
-import { Image } from "interfaces/image.interface";
-import UploadImage from "@components/upload-image";
+
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const { data } = await axios.get(
