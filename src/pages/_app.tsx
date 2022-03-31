@@ -20,6 +20,7 @@ library.add(faUser, faUserPen);
 function MyApp({ Component, pageProps }: AppProps) {
   const store = useStore();
   return (
+    //@ts-ignore
     <PersistGate persistor={store.__persistor} loading={<div>Loading...</div>}>
       <ThemeProvider theme={theme}>
         <Layout>
