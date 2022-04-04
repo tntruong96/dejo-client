@@ -36,7 +36,7 @@ function Register() {
   };
 
   return (
-    <div className="flex justify-center mt-32">
+    <div className="flex justify-center mt-32 min-h-screen">
       <Formik
         initialValues={{
           firstName: "",

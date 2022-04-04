@@ -41,6 +41,7 @@ const handleUpdate = () => {
                 <button className='btn' onClick={handleUpdate}><FontAwesomeIcon icon={faPenToSquare} /></button>
             </div>
             <h1 className='my-5'>{blogContent.title}</h1>
+            <div className="w-full p-4 flex justify-center">
             <Image
                 unoptimized={true}
                 width={400}
@@ -49,7 +50,8 @@ const handleUpdate = () => {
                 src={blogContent.thumb}
                 alt=""
             />
-            <div className='my-5 w-2/3' dangerouslySetInnerHTML={{__html: `${blogContent.content}`}}></div>
+            </div>
+            <div className='my-5 w-full sm:w-2/3 p-5 flex justify-center' dangerouslySetInnerHTML={{__html: `${blogContent.content}`}}></div>
 
         </div>
     );

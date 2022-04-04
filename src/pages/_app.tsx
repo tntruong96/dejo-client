@@ -7,7 +7,8 @@ import { faUser, faUserPen } from "@fortawesome/free-solid-svg-icons";
 import { wrapper } from "../redux/reudux-wrapper";
 import { PersistGate } from "redux-persist/integration/react";
 import { useStore } from "react-redux";
-import 'antd/dist/antd.css'
+import "antd/dist/antd.css";
+import { AnimatePresence } from "framer-motion";
 
 const theme = {
   colors: {},
@@ -17,14 +18,16 @@ const theme = {
 
 library.add(faUser, faUserPen);
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps, router }: AppProps) {
   const store = useStore();
   return (
     //@ts-ignore
     <PersistGate persistor={store.__persistor} loading={<div>Loading...</div>}>
       <ThemeProvider theme={theme}>
         <Layout>
-          <Component {...pageProps} />
+          <AnimatePresence exitBeforeEnter>
+            <Component {...pageProps} key={router.pathname} />
+          </AnimatePresence>
         </Layout>
       </ThemeProvider>
     </PersistGate>
