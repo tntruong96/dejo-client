@@ -7,7 +7,7 @@ import { FooterContainer } from './style';
 
 const Footer = () => {
     return (
-       <FooterContainer className='flex justify-center items-center absolute bottom-0 w-full'>
+       <FooterContainer className='flex justify-center w-full'>
            <span>Copyright <FontAwesomeIcon icon={faCopyright}/> 2022 De Jo Sai Gon</span>
        </FooterContainer>
     );

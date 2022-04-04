@@ -6,10 +6,6 @@ const nextConfig = {
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
   },
-  env: {
-    URL_API: "http://dev.dejosaigon.vn/api",
-    URL_ORI: "http://dev.dejosaigon.vn",
-  },
   experimental: {
     esmExternals: false
   },

@@ -1,6 +1,3 @@
-import { useDispatch } from "react-redux";
-import { clearProfile, isAuth } from "redux/store/common/commonSlice";
-
 
 
 const idleTimer = (cb: () => void): void => {
@@ -17,7 +14,7 @@ const startInterval = (cb: () => void) => {
 }
 
 const updateExpiredTime = () => {
-    localStorage.setItem("expiredTime", (Date.now() + 1000 * 60 * 10 ).toString())
+    localStorage.setItem("expiredTime", (Date.now() + 1000*60*10 ).toString())
 }
 
 const tracker = () => {

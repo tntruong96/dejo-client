@@ -17,7 +17,7 @@ import classNames from "classnames";
 const routerElement = [
   {
     title: "Le Blog",
-    url: "/blog",
+    url: "/blog?page=1",
   },
   {
     title: "Le Produit",
@@ -30,6 +30,7 @@ function Navbar() {
   const router = useRouter();
   const authen = useSelector(selectAuth);
   const profile: UserProfile = useSelector(selectProfile);
+
 
   const renderNavLink = routerElement.map((route, index) => (
     <NavLink key={index} className={`mx-5 ${router.pathname === route.url ? "active" : ""}`}>
@@ -52,16 +53,16 @@ function Navbar() {
   };
 
   return (
-    <nav className={classNames("shadow-md grid grid-cols-3 p-5 items-center h-16", `${router.pathname === "/" ? "absolute w-full" : "block"}`)}>
-      <div className="col-start-1" onClick={() => router.push("/")}>
-        <span className="logo text-3xl font-bold">De Jo Sai Gon</span>
+    <nav className={classNames("shadow-md grid grid-cols-1 sm:grid-cols-3 p-5 items-center h-16")}>
+      <div className="col-start-1 flex justify-center" onClick={() => router.push("/")}>
+        <span className="logo text-center text-3xl font-bold">De Jo Sai Gon</span>
       </div>
-      <ol className="col-start-2 flex justify-center items-center mb-0">
+      <ol className="col-start-2 hidden sm:flex justify-center items-center mb-0 ">
        {
          renderNavLink
        }
       </ol>
-      <div className="col-start-3 flex justify-end items-center">
+      <div className="col-start-3 hidden sm:flex justify-end items-center">
         {authen ? (
           <div>
             Welcome {profile?.userName}!

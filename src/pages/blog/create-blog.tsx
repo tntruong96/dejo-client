@@ -39,6 +39,7 @@ const CreateBlog: React.FC<Props> = ({ categories }) => {
   const [titleImage, setTitleImage] = useState<string | Blob>();
   const userProfile = useUserProfile();
 
+
   const onSubmit = async (values: IBlogFormValue) => {
     let imageRespone;
     message.loading({
@@ -50,7 +51,7 @@ const CreateBlog: React.FC<Props> = ({ categories }) => {
         const body = new FormData();
         body.append("file", titleImage);
         const { data } = await axios.post(
-          `${process.env.URL_API}/upload-image`,
+          `/api/upload-image`,
           body,
           {
             method: "POST",
@@ -83,7 +84,7 @@ const CreateBlog: React.FC<Props> = ({ categories }) => {
   };
 
   return (
-    <div className="w-full h-full p-16">
+    <div className="w-full h-full p-16 min-h-screen">
       <Formik
         initialValues={initialValue}
         validationSchema={validateForm}

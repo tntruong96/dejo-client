@@ -39,7 +39,7 @@ function Login() {
   }
 
   return (
-    <div className="flex relative justify-center">
+    <div className="flex relative justify-center min-h-screen">
       <Formik
         initialValues={{
           userName: "",
