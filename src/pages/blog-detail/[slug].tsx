@@ -10,6 +10,9 @@ import { faPenToSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { IBlog } from 'interfaces/blog.interface';
 import { useRouter } from 'next/router';
 import { message } from 'antd';
+import { useUserProfile } from '@utils/hooks/useUserProfile';
+import {ROLE} from '../../interfaces/authenticate.interface'
+
 
 interface Props {
     blogContent: IBlog    
@@ -19,12 +22,18 @@ interface Props {
 
 const BlogContent: NextPage<Props> = ({blogContent}) => {
 const router = useRouter();
+const profile = useUserProfile();
 
 const handleDelete = async (id: number) => {
-    const {data} = await axios.delete(`${process.env.URL_API}/blog/delete/${id}`);
+    const {data} = await axios.delete(`${process.env.NEXT_PUBLIC_URL_API}/blog/delete/${id}`);
     if(data){
         message.success("Deleted!!",1)
-        router.push("/blog");
+        router.push({
+            pathname: "/blog",
+            query: {
+                page: 1
+            }
+        });
     }
 } 
 
@@ -36,10 +45,15 @@ const handleUpdate = () => {
 
     return (
         <div className='w-full flex flex-col justify-center items-center'>
-            <div className='self-end flex w-32'>
-                <button className='btn' onClick={() => handleDelete(blogContent.id)}><FontAwesomeIcon icon={faTrashCan}/> </button>
-                <button className='btn' onClick={handleUpdate}><FontAwesomeIcon icon={faPenToSquare} /></button>
-            </div>
+            {
+               profile && profile.role === ROLE.ADMIN && (
+                    <div className='self-end flex w-32'>
+                    <button className='btn' onClick={() => handleDelete(blogContent.id)}><FontAwesomeIcon icon={faTrashCan}/> </button>
+                    <button className='btn' onClick={handleUpdate}><FontAwesomeIcon icon={faPenToSquare} /></button>
+                </div>
+                )
+            }
+           
             <h1 className='my-5'>{blogContent.title}</h1>
             <div className="w-full p-4 flex justify-center">
             <Image
@@ -51,7 +65,7 @@ const handleUpdate = () => {
                 alt=""
             />
             </div>
-            <div className='my-5 w-full sm:w-2/3 p-5 flex justify-center' dangerouslySetInnerHTML={{__html: `${blogContent.content}`}}></div>
+            <div className='my-5 w-full sm:w-2/3 p-5 flex flex-col justify-center items-center' dangerouslySetInnerHTML={{__html: `${blogContent.content}`}}></div>
 
         </div>
     );
@@ -64,7 +78,7 @@ const handleUpdate = () => {
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
     const slug = ctx.params?.slug as string;
-    const { data: blogContent } = await axios.get(`http://dev.dejosaigon.vn/api/blog/${slug}`) // your fetch function here 
+    const { data: blogContent } = await axios.get(`${process.env.URL_API}/blog/${slug}`) // your fetch function here 
 
     // const blogContent = blogs.find((blog) => blog.slug === slug);
 

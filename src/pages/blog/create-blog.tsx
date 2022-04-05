@@ -1,7 +1,7 @@
 import { Blogs } from "@services/blogs";
 import { useUserProfile } from "@utils/hooks/useUserProfile";
 import { Field, Form, Formik } from "formik";
-import { message } from "antd";
+import { message, notification } from "antd";
 import {
   IBlogCreateDTO,
   IBlogCategories,
@@ -18,8 +18,9 @@ import * as yup from "yup";
 
 const initialValue: IBlogFormValue = {
   title: "",
-  content: "D",
-  categoryId: ""
+  content: "",
+  categoryId: "",
+  titleImage: [],
 };
 
 interface Props {
@@ -28,15 +29,14 @@ interface Props {
 }
 
 const validateForm = yup.object().shape({
-  title: yup.string().required("Pleae fill out this field!"),
-  content: yup.string().required("Pleae fill out this field!"),
+  title: yup.string().required("Please fill out this field!"),
+  content: yup.string().required("Please fill out this field!"),
   categoryId: yup.string().required("Please select one item!"),
+  titleImage: yup.array().min(1, "Please choose image!")
 });
 
 const CreateBlog: React.FC<Props> = ({ categories }) => {
   const route = useRouter();
-  const [content, setContent] = useState("");
-  const [titleImage, setTitleImage] = useState<string | Blob>();
   const userProfile = useUserProfile();
 
 
@@ -47,11 +47,11 @@ const CreateBlog: React.FC<Props> = ({ categories }) => {
       key: "loading",
     });
     try {
-      if (titleImage) {
+      if (values.titleImage) {
         const body = new FormData();
-        body.append("file", titleImage);
+        body.append("file", values.titleImage[0]);
         const { data } = await axios.post(
-          `/api/upload-image`,
+          `${process.env.NEXT_PUBLIC_URL_API}/upload-image`,
           body,
           {
             method: "POST",
@@ -67,14 +67,18 @@ const CreateBlog: React.FC<Props> = ({ categories }) => {
         createdBy: userProfile.id,
         images: JSON.stringify([]),
       };
-      createDTO.content = content;
       if(imageRespone){
         createDTO.images = JSON.stringify([imageRespone.id]);
       }
       const res = await Blogs.createBlog.fetch(createDTO);
       if (res) {
         message.destroy("loading");
-        route.push("/blog");
+        route.push({
+          pathname:"/blog",
+          query: {
+            page: 1
+          }
+        });
         message.success("Success!!!", 3);
       }
     } catch (error) {
@@ -110,7 +114,7 @@ const CreateBlog: React.FC<Props> = ({ categories }) => {
               ) : null}
             </div>
             <div className="w-full flex flex-col justify-center">
-              <SelectFile title="Title's Image" setImageFn={setTitleImage} />
+              <SelectFile  name="titleImage" label="Title's Image"  />
               {/* <UploadImage label={"Title Image"} onChange={setTitleImage}/> */}
             </div>
             <div className="w-1/3 self-start my-2">
@@ -137,7 +141,7 @@ const CreateBlog: React.FC<Props> = ({ categories }) => {
             </div>
             <div className="w-full flex flex-col">
               <label htmlFor="content" className="font-bold">Content:</label>
-                <QuillEditor className="my-2" value={content} onChange={setContent}/>
+                <QuillEditor className="my-2" name="content"/>
               {/* {errors.content ? <span>{errors.content}</span> : null} */}
             </div>
             <div className="w-32">
@@ -161,7 +165,7 @@ const CreateBlog: React.FC<Props> = ({ categories }) => {
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const { data } = await axios.get(
-    "http://dev.dejosaigon.vn/api/blog-categories"
+    `${process.env.URL_API}/blog-categories`
   );
   return {
     props: {

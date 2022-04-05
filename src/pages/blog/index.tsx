@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
-import { Blogs } from "../../services/blogs";
+import React from "react";
 import CardBlog from "@components/blogs/card-blog";
 import { IBlog } from "interfaces/blog.interface";
 import { useRouter } from "next/router";
@@ -100,7 +98,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   );
   return {
     props: {
-      blogs,
+      blogs: blogs || [],
       current: query.page
     },
   };

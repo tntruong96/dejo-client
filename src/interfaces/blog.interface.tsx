@@ -17,7 +17,8 @@ export interface IBlog {
 export type IBlogFormValue = {
     title: string,
     content: string,
-    categoryId: string
+    categoryId: string,
+    titleImage: File[]
 }
 
 
