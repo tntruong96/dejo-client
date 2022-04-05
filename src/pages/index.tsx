@@ -20,7 +20,7 @@ const Home: NextPage<Props> = () => {
     <motion.div  exit={{opacity:0}} initial="initial" animate="animate" className="flex flex-col justify-center items-center h-screen align-middle">
       {/* <span>DE JO SAI GON</span> */}
       <div className="flex flex-col sm:flex-row">
-        <motion.div variants={slideInDown} className="flex-1 flex justify-end p-2 sm:p-10">
+        <motion.div variants={slideInDown} className="flex-1 flex justify-center md:justify-end p-2 sm:p-10">
           <Image
             width={500}
             height={500}

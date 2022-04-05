@@ -1,5 +1,6 @@
 import axios from "axios";
 import { quillConfig } from "configs/react-quil-config";
+import { useField, useFormikContext } from "formik";
 import dynamic from "next/dynamic";
 import React, { useEffect, useRef } from "react";
 import { QuillContainer } from "./styles";
@@ -14,26 +15,24 @@ const ReactQuill = dynamic<any>(async () => {
 // });
 
 type QuillProps = {
+  name: string,
   className?: string;
-  style?: React.DetailedHTMLProps<
-    React.StyleHTMLAttributes<HTMLStyleElement>,
-    HTMLStyleElement
-  >;
-  value?: string;
-  onChange?: (content: string) => void;
+  // style?: React.DetailedHTMLProps<
+  //   React.StyleHTMLAttributes<HTMLStyleElement>,
+  //   HTMLStyleElement
+  // >;
+  // value?: string;
+  // onChange?: (content: string) => void;
   [key: string]: any;
 };
 
-const QuillEditor = ({
-  className,
-  style,
-  value,
-  onChange,
-  ...props
-}: QuillProps) => {
+const QuillEditor: React.FC<QuillProps> = (props) => {
+  const {setFieldValue} = useFormikContext();
   const quillRef = useRef<any>();
-  //   console.log("ref", ref.current);
-  //   console.log(QuillWithRef);
+  const [field, meta, helpers] = useField(props);
+  const {className} = props
+
+  // helpers.setTouched(true)
 
   const onChangeData = (
     content: string,
@@ -41,7 +40,7 @@ const QuillEditor = ({
     source: any,
     editor: any
   ) => {
-    onChange && onChange(editor.getText().trim().length === 0 ? '' : content) ;
+      setFieldValue(field.name ,editor.getText().trim().length === 0 ? '' : content) ;
   };
 
   const _addImageHandler = () => {
@@ -58,7 +57,7 @@ const QuillEditor = ({
           const formData = new FormData();
           formData.append("file", file);
           const { data } = await axios.post(
-            `${process.env.URL_API}/upload-image`,
+            `${process.env.NEXT_PUBLIC_URL_API}/upload-image`,
             formData,
             {
               method: "POST",
@@ -77,12 +76,13 @@ const QuillEditor = ({
   useEffect(() => {
     if (quillRef.current) {
       _addImageHandler();
+
     }
   });
 
   const quillProps = {
     // ref: quillRef,
-    value: value || "",
+    value: field.value || "",
     modules: quillConfig.modules,
     formats: quillConfig.formats,
     theme: "snow",
@@ -91,8 +91,9 @@ const QuillEditor = ({
   };
 
   return (
-    <QuillContainer className={className} style={style}>
-      <ReactQuill forwardedRef={quillRef} {...quillProps} />
+    <QuillContainer className={className}>
+      <ReactQuill forwardedRef={quillRef} {...quillProps}/>
+      {meta.error && (<div className="error">{meta.error}</div>)}
     </QuillContainer>
   );
 };
