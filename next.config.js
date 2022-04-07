@@ -10,7 +10,7 @@ const nextConfig = {
     esmExternals: false
   },
   images: {
-      domains: ["dev.dejosaigon.vn"]
+      domains: ["dev.dejosaigon.vn", "103.104.119.145"]
   }
 }
 

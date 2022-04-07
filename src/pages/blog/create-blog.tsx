@@ -41,15 +41,16 @@ const CreateBlog: React.FC<Props> = ({ categories }) => {
 
 
   const onSubmit = async (values: IBlogFormValue) => {
+    const {titleImage, ...rest} = values;
     let imageRespone;
     message.loading({
       content: "Posting...",
       key: "loading",
     });
     try {
-      if (values.titleImage) {
+      if (titleImage) {
         const body = new FormData();
-        body.append("file", values.titleImage[0]);
+        body.append("file", titleImage[0]);
         const { data } = await axios.post(
           `${process.env.NEXT_PUBLIC_URL_API}/upload-image`,
           body,
@@ -63,7 +64,7 @@ const CreateBlog: React.FC<Props> = ({ categories }) => {
         imageRespone = data;
       }
       const createDTO: IBlogCreateDTO = {
-        ...values,
+        ...rest,
         createdBy: userProfile.id,
         images: JSON.stringify([]),
       };

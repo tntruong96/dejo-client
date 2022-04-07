@@ -24,7 +24,7 @@ const CardBlog: React.FC<Props> =({blog}) => {
                 width={300}
                 height={300}
                 objectFit="cover"
-                src={`${process.env.URL_ORI}/${blog.thumb}`}
+                src={`${process.env.NEXT_PUBLIC_URL_WEB}/${blog.thumb}`}
                 alt=""
             />
             {/* <div dangerouslySetInnerHTML={{__html: `${blog.content}`}}></div> */}
