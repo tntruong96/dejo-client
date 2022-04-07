@@ -65,7 +65,7 @@ const handleUpdate = () => {
                 alt=""
             />
             </div>
-            <div className='my-5 w-full sm:w-2/3 p-5 flex flex-col justify-center items-center' dangerouslySetInnerHTML={{__html: `${blogContent.content}`}}></div>
+            <div className='my-5 w-full sm:w-2/3 p-5 flex flex-col justify-center' dangerouslySetInnerHTML={{__html: `${blogContent.content}`}}></div>
 
         </div>
     );
