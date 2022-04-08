@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import Navbar from "../navbar/navbar";
 import Footer from "../footer";
 import Head from "next/head";
+import Sidebar from "../sidebar";
 
 interface Props {
   children: ReactElement;
@@ -16,6 +17,7 @@ const Layout: React.FC<Props> = ({ children }) => {
       </Head>
       <Navbar />
       <main>{children}</main>
+      <Sidebar/>
       <Footer />
     </>
   );

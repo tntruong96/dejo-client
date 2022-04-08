@@ -6,6 +6,7 @@ import Auth from "../services/auth";
 import { useRouter } from "next/router";
 import * as yup from "yup";
 import classNames from "classnames";
+import {motion} from 'framer-motion';
 
 const schemaValidate = yup.object().shape({
   userName: yup
@@ -39,7 +40,7 @@ function Register() {
   };
 
   return (
-    <div className="min-h-screen">
+    <motion.div exit={{opacity: 0}} initial={{opacity: 0}} animate={{opacity:1}} className="min-h-screen">
       <div className="flex justify-center mt-32">
         <Formik
           initialValues={{
@@ -61,7 +62,7 @@ function Register() {
           }}
         >
           {({ errors, touched, isValid }) => (
-            <Form className="flex flex-col justify-center items-center form w-4/12 shadow-2xl">
+            <Form className="flex flex-col justify-center items-center form w-2/3 md:w-4/12 shadow-2xl">
               <div className="form-group ">
                 <Field
                   className={classNames(
@@ -172,7 +173,7 @@ function Register() {
           )}
         </Formik>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

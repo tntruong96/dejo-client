@@ -57,7 +57,7 @@ const Blog: React.FC<Props> = ({ blogs, current }) => {
       </div>
     </div>
   ) : (
-      <motion.div  exit={{opacity: 0}} initial="initial" animate="animate" className="flex flex-col items-center min-h-screen">
+      <motion.div  exit={{opacity: 0}} initial={{opacity:0}} animate={{opacity: 1}} className="flex flex-col items-center min-h-screen">
         {profile && profile.role === ROLE.ADMIN ? (
           <div className="self-end mr-10">
             <motion.button
@@ -71,7 +71,7 @@ const Blog: React.FC<Props> = ({ blogs, current }) => {
             </motion.button>
           </div>
         ) : null}
-        <motion.div variants={slideInLeft} className="flex flex-col w-full justify-center items-center">
+        <motion.div  className="flex flex-col w-full justify-center items-center">
         {renderListBlog}
         <div className="w-full mt-auto flex justify-center">
           <Pagination
