@@ -24,12 +24,12 @@ const tracker = () => {
 }
 
 const cleanUp = (interval: NodeJS.Timeout, cb: () => void) => {
+    cb();
     localStorage.removeItem("expiredTime");
     clearInterval(interval);
     window.removeEventListener("mousemove", updateExpiredTime)
     window.removeEventListener("scroll", updateExpiredTime)
     window.removeEventListener("keydown", updateExpiredTime)
-    cb();
 }
 
 

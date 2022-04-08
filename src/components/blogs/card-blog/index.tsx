@@ -17,7 +17,7 @@ const CardBlog: React.FC<Props> =({blog}) => {
     const router = useRouter();
     return (
         <CardContainer onClick={() => router.push(`/blog-detail/${blog.slug}`)} className='flex flex-col items-center justify-center'>
-            <h2 className='mb-0'>{blog.title}</h2>
+            <p className='mb-0 text-xl font-bold'>{blog.title}</p>
             <p>{convertDate(blog.createdAt)}</p>
             <Image
                 unoptimized={true}

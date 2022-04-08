@@ -14,4 +14,5 @@ export type CommonTypeState = {
     toggle: boolean
     profile: UserProfile | null
     isAuthCheck: boolean
+    sidebarToggle: boolean
 }

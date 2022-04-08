@@ -1,9 +1,6 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Formik, FormikHelpers, Form, Field } from "formik";
 import { ILogin } from "../interfaces/authenticate.interface";
-import { caxios } from "../utils/axios";
-import { redirect } from "next/dist/server/api-utils";
 import { useRouter } from "next/router";
 import Auth from "../services/auth";
 import { useDispatch } from "react-redux";
@@ -13,8 +10,13 @@ import {
   saveProfile,
 } from "../redux/store/common/commonSlice";
 import idleTimer from "@utils/idleTimer";
+import * as yup from 'yup';
+import {motion} from 'framer-motion';
 
-Login.propTypes = {};
+const validateForm = yup.object().shape({
+  userName:yup.string().required("Please fill out username!!"),
+  password: yup.string().required("Please fill out password!!")
+})
 
 function Login() {
   const router = useRouter();
@@ -43,9 +45,10 @@ function Login() {
   };
 
   return (
-    <div className="min-h-screen">
+    <motion.div exit={{opacity: 0}} initial={{opacity: 0}} animate={{opacity:1}} className="min-h-screen">
       <div className="flex relative justify-center">
         <Formik
+          validationSchema={validateForm}
           initialValues={{
             userName: "",
             password: "",
@@ -68,6 +71,7 @@ function Login() {
                   name="userName"
                   placeholder="Username..."
                 />
+                {errors.userName && touched.userName && (<div className="error">{errors.userName}</div>)}
               </div>
               <div className="form-group">
                 {/* <label htmlFor="password">Password:</label> */}
@@ -75,8 +79,10 @@ function Login() {
                   className="form-input shadow-md"
                   id="password"
                   name="password"
+                  type="password"
                   placeholder="Password..."
-                />
+                  />
+                  {errors.password && touched.password && (<div className="error">{errors.password}</div>)}
               </div>
               <button disabled={!isValid} className="btn" type="submit">
                 Log in
@@ -85,7 +91,7 @@ function Login() {
           )}
         </Formik>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
