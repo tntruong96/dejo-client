@@ -1,3 +1,4 @@
+import { UserProfile } from "./authenticate.interface";
 
 
 export interface IBlog {
@@ -6,8 +7,8 @@ export interface IBlog {
     content: string,
     status: number,
     images: string,
-    categoryId: string,
-    createdBy: number,
+    category: IBlogCategories,
+    createdBy: UserProfile,
     createdAt: string,
     updatedAt: string
     thumb: string;
@@ -22,7 +23,13 @@ export type IBlogFormValue = {
 }
 
 
-export type IBlogCreateDTO = Omit<IBlog, "id" | "status" | "createdAt" | "updatedAt" | "slug" | "thumb">
+export type IBlogCreateDTO = {
+    title: string,
+    content: string,
+    images: string,
+    category: number,
+    createdBy: number,
+}
 
 export interface IBlogCategories  {
     id: number,

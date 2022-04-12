@@ -41,7 +41,7 @@ const CreateBlog: React.FC<Props> = ({ categories }) => {
 
 
   const onSubmit = async (values: IBlogFormValue) => {
-    const {titleImage, ...rest} = values;
+    const {titleImage, categoryId, ...rest} = values;
     let imageRespone;
     message.loading({
       content: "Posting...",
@@ -65,6 +65,7 @@ const CreateBlog: React.FC<Props> = ({ categories }) => {
       }
       const createDTO: IBlogCreateDTO = {
         ...rest,
+        category:Number.parseInt(categoryId),
         createdBy: userProfile.id,
         images: JSON.stringify([]),
       };
@@ -89,7 +90,7 @@ const CreateBlog: React.FC<Props> = ({ categories }) => {
   };
 
   return (
-    <div className="w-full h-full p-16 min-h-screen">
+    <div className="w-full md:w-2/3 h-full p-2 md:p-16 min-h-screen">
       <Formik
         initialValues={initialValue}
         validationSchema={validateForm}

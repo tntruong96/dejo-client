@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -35,7 +35,8 @@ function Navbar() {
   const renderNavLink = routerElement.map((route, index) => (
     <NavLink
       key={index}
-      className={`mx-5 ${router.pathname === route.url ? "active" : ""}`}
+      // className={`mx-5 ${router.pathname === route.url ? "active" : ""}`}
+      className={`mx-5 ${router.pathname === route.url.replace(/\?.+/g,"") ? "active" : ""}`}
     >
       <Link href={route.url}>{route.title}</Link>
     </NavLink>
@@ -45,7 +46,9 @@ function Navbar() {
     dispatch(behaveSidebar());
   };
 
-  const routingToDetail = () => {};
+  useEffect(() => {
+    
+  })
 
   return (
     <NavContainer

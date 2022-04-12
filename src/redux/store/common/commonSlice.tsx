@@ -9,7 +9,7 @@ const initialState: CommonTypeState = {
     toggle: true,
     profile: null,
     isAuthCheck: false,
-    sidebarToggle: false
+    sidebarToggleClose: true
 }
 
 export const CommonSlice = createSlice({
@@ -27,7 +27,7 @@ export const CommonSlice = createSlice({
             state.isAuthCheck = !state.isAuthCheck
         },
         behaveSidebar: (state: CommonTypeState) => {
-            state.sidebarToggle= !state.sidebarToggle;
+            state.sidebarToggleClose= !state.sidebarToggleClose;
         }
     },
     extraReducers: {
@@ -50,4 +50,4 @@ export const selectAuth = (state: any ) => state?.common?.isAuthCheck;
 
 export const selectProfile = (state:any) => state?.common?.profile;
 
-export const stateSidebar = (state: any) => state?.common?.sidebarToggle;
+export const stateSidebar = (state: any) => state?.common?.sidebarToggleClose;
