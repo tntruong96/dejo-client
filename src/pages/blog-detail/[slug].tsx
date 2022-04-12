@@ -37,8 +37,13 @@ const handleDelete = async (id: number) => {
     }
 } 
 
-const handleUpdate = () => {
-    
+const handleUpdate = (slug: string) => {
+    router.push({
+        pathname: "/blog/update-blog",
+        query: {
+            slug
+        }
+    })
 }
 
 
@@ -49,12 +54,12 @@ const handleUpdate = () => {
                profile && profile.role === ROLE.ADMIN && (
                     <div className='self-end flex w-32'>
                     <button className='btn' onClick={() => handleDelete(blogContent.id)}><FontAwesomeIcon icon={faTrashCan}/> </button>
-                    <button className='btn' onClick={handleUpdate}><FontAwesomeIcon icon={faPenToSquare} /></button>
+                    <button className='btn' onClick={() => handleUpdate(blogContent.slug)}><FontAwesomeIcon icon={faPenToSquare} /></button>
                 </div>
                 )
             }
            
-            <h1 className='my-5'>{blogContent.title}</h1>
+            <h2 className='my-5 px-4'>{blogContent.title}</h2>
             <div className="w-full p-4 flex justify-center">
             <Image
                 unoptimized={true}
