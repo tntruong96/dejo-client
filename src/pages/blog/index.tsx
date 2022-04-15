@@ -12,8 +12,7 @@ import { PaginateItem } from "interfaces/paginate.interface";
 import { Empty, Pagination } from "antd";
 import style from "../../styles/modules/Blog.module.scss";
 import { useModuleClassNames } from "@utils/hooks/useStyle";
-import {motion} from 'framer-motion'
-import { slideInLeft } from "animations";
+import {m} from 'framer-motion'
 
 interface Props {
   blogs: PaginateItem<IBlog>;
@@ -57,10 +56,10 @@ const Blog: React.FC<Props> = ({ blogs, current }) => {
       </div>
     </div>
   ) : (
-      <motion.div  exit={{opacity: 0}} initial={{opacity:0}} animate={{opacity: 1}} className="flex flex-col items-center min-h-screen">
+      <m.div  exit={{opacity: 0}} initial={{opacity:0}} animate={{opacity: 1}} className="flex flex-col items-center min-h-screen">
         {profile && profile.role === ROLE.ADMIN ? (
           <div className="self-end mr-10">
-            <motion.button
+            <m.button
               whileHover={{scale:1.1}}
               className="btn"
               type="button"
@@ -68,10 +67,10 @@ const Blog: React.FC<Props> = ({ blogs, current }) => {
             >
               <FontAwesomeIcon icon={faPlus} />
               <span className="ml-2">New Blog</span>
-            </motion.button>
+            </m.button>
           </div>
         ) : null}
-        <motion.div  className="flex flex-col w-full justify-center items-center">
+        <m.div  className="flex flex-col w-full justify-center items-center">
         {renderListBlog}
         <div className="w-full mt-auto flex justify-center">
           <Pagination
@@ -82,9 +81,9 @@ const Blog: React.FC<Props> = ({ blogs, current }) => {
             onChange={handleOnChangePage}
           />
         </div>
-        </motion.div>
+        </m.div>
        
-      </motion.div>
+      </m.div>
   );
 };
 

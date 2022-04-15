@@ -1,13 +1,13 @@
 import { Blogs } from "@services/blogs";
 import { useUserProfile } from "@utils/hooks/useUserProfile";
 import { Field, Form, Formik } from "formik";
-import { message, notification } from "antd";
+import { message } from "antd";
 import {
   IBlogCreateDTO,
   IBlogCategories,
   IBlogFormValue,
 } from "interfaces/blog.interface";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { GetStaticProps } from "next";
 import axios from "axios";
 import SelectFile from "@components/blogs/select-file";

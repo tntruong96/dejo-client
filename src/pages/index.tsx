@@ -26,6 +26,7 @@ const Home: NextPage<Props> = () => {
             height={500}
             objectFit="cover"
             src={de_jo}
+            priority={true}
             alt=""
           />
         </motion.div>
