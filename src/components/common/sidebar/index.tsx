@@ -43,7 +43,7 @@ export const Sidebar = () => {
   }, [isOpenSidebar]);
 
   return (
-    <SidebarContainer className={isOpenSidebar ? "close" : ""}>
+    <SidebarContainer className={isOpenSidebar ? "" : "open"}>
       <div className="self-end mr-2">
         <FontAwesomeIcon onClick={handleSidebar} icon={faXmark} />
       </div>

@@ -11,7 +11,7 @@ import {
 } from "../redux/store/common/commonSlice";
 import idleTimer from "@utils/idleTimer";
 import * as yup from 'yup';
-import {motion} from 'framer-motion';
+import {m} from 'framer-motion';
 
 const validateForm = yup.object().shape({
   userName:yup.string().required("Please fill out username!!"),
@@ -45,7 +45,7 @@ function Login() {
   };
 
   return (
-    <motion.div exit={{opacity: 0}} initial={{opacity: 0}} animate={{opacity:1}} className="min-h-screen">
+    <m.div className="min-h-screen">
       <div className="flex relative justify-center">
         <Formik
           validationSchema={validateForm}
@@ -91,7 +91,7 @@ function Login() {
           )}
         </Formik>
       </div>
-    </motion.div>
+    </m.div>
   );
 }
 

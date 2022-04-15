@@ -9,7 +9,7 @@ const initialState: CommonTypeState = {
     toggle: true,
     profile: null,
     isAuthCheck: false,
-    sidebarToggleClose: true
+    sidebarToggleClose: false
 }
 
 export const CommonSlice = createSlice({

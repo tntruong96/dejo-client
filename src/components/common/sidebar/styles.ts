@@ -11,11 +11,11 @@ export const SidebarContainer = styled.aside`
     display: flex;
     flex-direction: column;
     align-items: center;
-    transform: translateX(0);
+    transform: translateX(-300px);
     transition: transform .5s ease-in;
     
-    &.close{
-        transform: translateX(-300px);
+    &.open{
+        transform: translateX(0px);
     }
 
 `
