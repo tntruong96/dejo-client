@@ -167,7 +167,7 @@ const CreateBlog: React.FC<Props> = ({ categories }) => {
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const { data } = await axios.get(
-    `${process.env.URL_API}/blog-categories`
+    `${process.env.NEXT_PUBLIC_URL_API}/blog-categories`
   );
   return {
     props: {

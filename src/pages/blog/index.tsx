@@ -93,7 +93,7 @@ const Blog: React.FC<Props> = ({ blogs, current }) => {
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const {query} = ctx;
   const { data: blogs } = await axios.get(
-    `${process.env.URL_API}/blog?limit=2&page=${query.page}`
+    `${process.env.NEXT_PUBLIC_URL_API}/blog?limit=2&page=${query.page}`
   );
   return {
     props: {

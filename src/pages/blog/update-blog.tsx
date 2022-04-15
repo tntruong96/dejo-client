@@ -150,7 +150,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     `${process.env.NEXT_PUBLIC_URL_API}/blog/${query.slug}`
   );
   const { data: categories } = await axios.get(
-    `${process.env.URL_API}/blog-categories`
+    `${process.env.NEXT_PUBLIC_URL_API}/blog-categories`
   );
 
   return {
