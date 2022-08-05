@@ -2,9 +2,8 @@
 
 .btn {
   border: 1px solid rgb(190, 186, 186);
-  border-radius: 5px;
+  // border-radius: 5px;
   padding: 5px;
-  margin: 5px;
   width: 100%;
 
   &:hover {
@@ -39,6 +38,42 @@ input.form-input {
   &:hover,
   &:focus {
     // border: 2px solid #333;
+  }
+
+  &.form-input-error {
+    border: 1px solid $red;
+
+    &::placeholder {
+      color: $red;
+    }
+
+    &:-ms-input-placeholder {
+      /* Internet Explorer 10-11 */
+      color: red;
+    }
+
+    &::-ms-input-placeholder {
+      /* Microsoft Edge */
+      color: red;
+    }
+  }
+}
+
+textarea.form-input {
+  border: 1px solid rgb(165, 161, 161);
+  border-radius: 2px;
+  padding: 5px;
+  margin: 10px 0px;
+
+  width: 100%;
+
+  &:hover,
+  &:focus {
+    // border: 2px solid #333;
+    outline: none;
+    border-color: none;
+    box-shadow: none;
+    resize: none;
   }
 
   &.form-input-error {

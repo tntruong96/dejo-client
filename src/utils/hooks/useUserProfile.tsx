@@ -1,6 +1,6 @@
-import { UserProfile } from "interfaces/authenticate.interface";
+import { UserProfile } from "@interfaces/authenticate.interface";
 import { useSelector } from "react-redux"
-import { selectProfile } from "redux/store/common/commonSlice"
+import { selectProfile } from "../../redux/store/common/commonSlice"
 
 
 

@@ -8,7 +8,6 @@ import { wrapper } from "../redux/reudux-wrapper";
 import { PersistGate } from "redux-persist/integration/react";
 import { useStore } from "react-redux";
 import "antd/dist/antd.css";
-import { AnimatePresence, domAnimation, LazyMotion } from "framer-motion";
 
 const theme = {
   colors: {},
@@ -25,11 +24,8 @@ function MyApp({ Component, pageProps, router }: AppProps) {
     <PersistGate persistor={store.__persistor} loading={<div>Loading...</div>}>
       <ThemeProvider theme={theme}>
         <Layout>
-          <LazyMotion features={domAnimation}>
-          <AnimatePresence exitBeforeEnter>
+
             <Component {...pageProps} key={router.pathname} />
-          </AnimatePresence>
-          </LazyMotion>
         </Layout>
       </ThemeProvider>
     </PersistGate>

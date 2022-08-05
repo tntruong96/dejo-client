@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": "./src",
+    "baseUrl": ".",
     "target": "es5",
     "lib": [
       "dom",
@@ -20,13 +20,25 @@
     "jsx": "preserve",
     "paths": {
       "@components/*": [
-        "components/*"
+        "src/components/*"
       ],
       "@services/*": [
-        "services/*"
+        "src/services/*"
       ],
       "@utils/*": [
-        "utils/*"
+        "src/utils/*"
+      ],
+      "@interfaces/*": [
+        "src/interfaces/*"
+      ],
+      "@configs/*":[
+        "src/configs/*"
+      ],
+      "@redux/*": [
+        "src/redux/*"
+      ],
+      "@public/*": [
+        "public/*"
       ]
     },
     "incremental": true

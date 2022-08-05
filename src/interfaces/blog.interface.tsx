@@ -11,28 +11,33 @@ export interface IBlog {
     createdBy: UserProfile,
     createdAt: string,
     updatedAt: string
-    thumb: string;
+    thumbnailPath: string;
     slug: string;
+    thumbnail: string;
+    shortContent: string
 }
 
 export type IBlogFormValue = {
     title: string,
     content: string,
     categoryId: string,
-    titleImage: File[]
+    // titleImage: File[]
+    thumbnail: string,
+    shortContent: string
 }
 
 
 export type IBlogCreateDTO = {
     title: string,
     content: string,
-    images: string,
-    category: number,
+    thumbnail: string,
+    category: string,
     createdBy: number,
+    shortContent: string
 }
 
 export interface IBlogCategories  {
-    id: number,
+    id: string,
     name: string,
     [key: string]: any
 }

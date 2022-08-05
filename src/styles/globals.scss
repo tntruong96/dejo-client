@@ -1,9 +1,9 @@
 @import "~tailwindcss/base";
 @import "~tailwindcss/components";
 @import "~tailwindcss/utilities";
-@import 'react-quill/dist/quill.snow.css';
+@import "react-quill/dist/quill.snow.css";
 
-@import './base';
+@import "./base";
 
 *,
 *::before,
@@ -21,6 +21,21 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+
+
+    /* Style image preview of Image antd */
+  .ant-image-preview-img-wrapper {
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &:before {
+      height: 0;
+    }
+    .ant-image-preview-img {
+      max-height: 95%;
+    }
+  }
 }
 
 a {
@@ -41,4 +56,10 @@ h2 {
 h3 {
   font-weight: bolder;
   font-size: 1rem;
+}
+
+
+//fix quill duplicate toolbar in strict mode react 18
+.quill > .ql-toolbar:first-child {
+  display: none !important;
 }

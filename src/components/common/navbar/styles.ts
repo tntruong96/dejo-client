@@ -8,7 +8,14 @@ export const NavLink = styled.li`
   }
 `;
 
-export const NavContainer = styled.nav``;
+export const NavContainer = styled.nav`
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  background-color: #fff;
+`;
 
 export const BurgerContainer = styled.div`
   top: 15px;

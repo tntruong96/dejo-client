@@ -1,0 +1,16 @@
+.image {
+    height: 400px;
+    margin: 1rem 0;
+    position: relative;
+    cursor: zoom-in;
+}
+
+// disable mask style standard
+.mask-custom {
+    display: none;
+}
+
+// add cursor zoom in to antd image
+.cursor {
+    cursor: zoom-in;
+}
